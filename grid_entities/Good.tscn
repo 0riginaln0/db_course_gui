@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq7h8fgcqo484"]
+
+[ext_resource type="Script" path="res://grid_entities/good.gd" id="1_2ubtc"]
+
+[node name="Good" type="Control"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -483.0
+offset_bottom = -548.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ubtc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Id" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "хз что за id s d ddddd dasd asdddd"
+autowrap_mode = 2
+selection_enabled = true
+
+[node name="Name" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "хз что за имяzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+selection_enabled = true
+
+[node name="Priority" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "хз что за приоритетность"
+selection_enabled = true
