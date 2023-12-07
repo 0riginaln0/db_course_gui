@@ -14,11 +14,21 @@ func _on_request_performer_response_ready() -> void:
 	
 	var response: Array = $RequestPerformer.response
 	#var response = format_json($RequestPerformer.response)
-	var dict: Dictionary = response[0]
-	print(dict)
+	if response[0] is Dictionary:
+		# if json - в дикт
+		var dict: Dictionary = response[0]
+		print(dict)
+	else:
+		# else - просто в массив
+		var result = response[0]
+		print(result)
+	## обработка полученного результата в зависимости от current_request
+	
 
 func _on_button_button_up() -> void:
-	var str: String = "good/demand-comparison/4/9"
+	var str: String = "good/most-unsellable/2023-10-07T11:01:01+03:00/2023-10-12T23:59:59+03:00"
+	#var str: String = ""
+	# current_request enum bats
 	$RequestPerformer.get_request(ApplicationProperties.url + str)
 
 func format_json(json_string: String) -> String:
