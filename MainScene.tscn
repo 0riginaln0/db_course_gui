@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwkpve8t08wad"]
+
+[ext_resource type="Script" path="res://main_scene.gd" id="1_6j80v"]
+[ext_resource type="PackedScene" uid="uid://b8l7p1ph73dxj" path="res://windows/Journal.tscn" id="2_1dg74"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_umxuq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_74mr3"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6j80v")
+
+[node name="Journal" parent="." instance=ExtResource("2_1dg74")]
+layout_mode = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -271.0
+offset_top = 5.0
+offset_right = -4.0
+offset_bottom = 211.0
+grow_horizontal = 0
+
+[node name="Journal" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_umxuq")
+text = "Журналы"
+
+[node name="Reports" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_umxuq")
+text = "Отчёты"
+
+[node name="Directory" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_umxuq")
+text = "Справочник"
+
+[node name="DbPicker" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_top = -421.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Warehouse1" type="Button" parent="DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_74mr3")
+text = "Склад №1"
+
+[node name="Warehouse2" type="Button" parent="DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_74mr3")
+text = "Склад №2"
+
+[node name="Sales" type="Button" parent="DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_74mr3")
+text = "Продажи"
+
+[node name="Goods" type="Button" parent="DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_74mr3")
+text = "Товары"
