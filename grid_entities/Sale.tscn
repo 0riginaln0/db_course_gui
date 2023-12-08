@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj8lncak0kbd1"]
+
+[ext_resource type="Script" path="res://grid_entities/sale.gd" id="1_45yua"]
+
+[node name="Sale" type="Control"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -483.0
+offset_bottom = -647.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45yua")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Id" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "id"
+
+[node name="GoodCount" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "count"
+
+[node name="CreateDate" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "create date"
+
+[node name="GoodIdNamePriority" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "good"

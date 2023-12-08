@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://grid_entities/good.gd" id="1_2ubtc"]
 
 [node name="Good" type="Control"]
-custom_minimum_size = Vector2(500, 100)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -483.0
-offset_bottom = -548.0
+offset_bottom = -647.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2ubtc")
@@ -26,6 +26,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
+bbcode_enabled = true
 text = "хз что за id s d ddddd dasd asdddd"
 autowrap_mode = 2
 selection_enabled = true
@@ -34,6 +35,7 @@ selection_enabled = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
+bbcode_enabled = true
 text = "хз что за имяzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 selection_enabled = true
 
@@ -41,5 +43,6 @@ selection_enabled = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
+bbcode_enabled = true
 text = "хз что за приоритетность"
 selection_enabled = true
