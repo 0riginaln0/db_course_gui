@@ -113,5 +113,7 @@ button_group = SubResource("ButtonGroup_csmbw")
 text = "Товары"
 
 [connection signal="response_ready" from="Journal/RequestPerformer" to="Journal" method="_on_request_performer_response_ready"]
+[connection signal="button_down" from="DbPicker/Warehouse1" to="Journal" method="_on_warehouse_1_button_down"]
+[connection signal="button_down" from="DbPicker/Warehouse2" to="Journal" method="_on_warehouse_2_button_down"]
 [connection signal="button_down" from="DbPicker/Sales" to="Journal" method="_on_sales_button_down"]
 [connection signal="button_down" from="DbPicker/Goods" to="Journal" method="_on_goods_button_down"]

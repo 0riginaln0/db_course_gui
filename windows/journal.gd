@@ -12,6 +12,7 @@ var state: JOURNAL_STATE
 
 var good_factory = preload("res://grid_entities/Good.tscn")
 var sale_factory = preload("res://grid_entities/Sale.tscn")
+var wh_factory = preload("res://grid_entities/Warehouse.tscn")
 
 #var response: Array = []
 
@@ -33,6 +34,10 @@ func _on_request_performer_response_ready() -> void:
 			set_goods(response)
 		JOURNAL_STATE.SALES:
 			set_sales(response)
+		JOURNAL_STATE.WAREHOUSE1:
+			set_warehouse1(response)
+		JOURNAL_STATE.WAREHOUSE2:
+			set_warehouse2(response)
 
 func set_goods(response: Array):
 	for ch in $DbGrid/ScrollContainer/VBoxContainer.get_children():
@@ -58,10 +63,43 @@ func set_sales(response: Array):
 		new_sale.set_sale_id(str(sale.get("saleId")))
 		new_sale.set_good_count(str(sale.get("goodCount")))
 		new_sale.set_create_date(str(sale.get("createDate")))
-		new_sale.set_good_id_name_priority(str(sale.get("good").get("name")))
+		new_sale.set_good_id_name_priority(str(sale.get("good").get("name"), "\n",
+												sale.get("good").get("goodId")))
 		$DbGrid/ScrollContainer/VBoxContainer.add_child(new_sale)
 
 func _on_sales_button_down() -> void:
 	state = JOURNAL_STATE.SALES
 	var str: String = "sale/all"
+	$RequestPerformer.get_request(ApplicationProperties.url + str)
+
+func set_warehouse2(response: Array):
+	for ch in $DbGrid/ScrollContainer/VBoxContainer.get_children():
+		ch.free()
+	for wh in response:
+		var new_wh: Warehosue = wh_factory.instantiate()
+		new_wh.set_warehouse_id(str(wh.get("warehouse2Id")))
+		new_wh.set_good_count(str(wh.get("goodCount")))
+		new_wh.set_good_id_name_priority(str(wh.get("good").get("name"),
+											 "\n", wh.get("good").get("goodId")))
+		$DbGrid/ScrollContainer/VBoxContainer.add_child(new_wh)
+
+func _on_warehouse_2_button_down() -> void:
+	state = JOURNAL_STATE.WAREHOUSE2
+	var str: String = "warehouse2/all"
+	$RequestPerformer.get_request(ApplicationProperties.url + str)
+
+func set_warehouse1(response: Array):
+	for ch in $DbGrid/ScrollContainer/VBoxContainer.get_children():
+		ch.free()
+	for wh in response:
+		var new_wh: Warehosue = wh_factory.instantiate()
+		new_wh.set_warehouse_id(str(wh.get("warehouse1Id")))
+		new_wh.set_good_count(str(wh.get("goodCount")))
+		new_wh.set_good_id_name_priority(str(wh.get("good").get("name"),
+											 "\n", wh.get("good").get("goodId")))
+		$DbGrid/ScrollContainer/VBoxContainer.add_child(new_wh)
+
+func _on_warehouse_1_button_down() -> void:
+	state = JOURNAL_STATE.WAREHOUSE1
+	var str: String = "warehouse1/all"
 	$RequestPerformer.get_request(ApplicationProperties.url + str)
