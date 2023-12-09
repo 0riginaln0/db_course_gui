@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dfmwkpbvabqtu"]
+[gd_scene load_steps=3 format=3 uid="uid://dfmwkpbvabqtu"]
+
+[ext_resource type="Script" path="res://windows/request_builder.gd" id="1_osyjh"]
+[ext_resource type="PackedScene" uid="uid://0fldld3rukkt" path="res://src/RequestPerformer.tscn" id="2_04ccj"]
 
 [node name="RequestBuilder" type="Control"]
 layout_mode = 3
@@ -7,31 +10,259 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_osyjh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 290.0
-offset_bottom = 49.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="PickerContainer" type="VBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer3/PickerContainer"]
 layout_mode = 2
 text = "Выбор таблицы:"
 
-[node name="DBPicker" type="OptionButton" parent="VBoxContainer"]
+[node name="DBPicker" type="OptionButton" parent="VBoxContainer3/PickerContainer"]
 layout_mode = 2
-item_count = 4
+item_count = 2
 popup/item_0/text = "Продажи"
-popup/item_0/id = 3
+popup/item_0/id = 0
 popup/item_1/text = "Товары"
-popup/item_1/id = 2
-popup/item_2/text = "Склад 1"
-popup/item_2/id = 0
-popup/item_3/text = "Склад 2"
-popup/item_3/id = 1
+popup/item_1/id = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer3/PickerContainer"]
 layout_mode = 2
 text = "Выбор запроса:"
 
-[node name="RequestPicker" type="OptionButton" parent="VBoxContainer"]
+[node name="RequestPicker" type="OptionButton" parent="VBoxContainer3/PickerContainer"]
 layout_mode = 2
+item_count = 3
+popup/item_0/text = "Создать"
+popup/item_0/id = 0
+popup/item_1/text = "Изменить"
+popup/item_1/id = 1
+popup/item_2/text = "Удалить"
+popup/item_2/id = 2
+
+[node name="GoodCreateParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="NameContainer" type="HBoxContainer" parent="VBoxContainer3/GoodCreateParams"]
+layout_mode = 2
+
+[node name="NameLabel" type="RichTextLabel" parent="VBoxContainer3/GoodCreateParams/NameContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]name[/u]:"
+
+[node name="NameInput" type="LineEdit" parent="VBoxContainer3/GoodCreateParams/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PriorityContainer" type="HBoxContainer" parent="VBoxContainer3/GoodCreateParams"]
+layout_mode = 2
+
+[node name="PriorityLabel" type="RichTextLabel" parent="VBoxContainer3/GoodCreateParams/PriorityContainer"]
+custom_minimum_size = Vector2(70, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]priority[/u]:"
+
+[node name="PriorityInput" type="LineEdit" parent="VBoxContainer3/GoodCreateParams/PriorityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoodUpdateParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="IdContainer" type="HBoxContainer" parent="VBoxContainer3/GoodUpdateParams"]
+layout_mode = 2
+
+[node name="IdLabel" type="RichTextLabel" parent="VBoxContainer3/GoodUpdateParams/IdContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]id[/u]:"
+
+[node name="IdInput" type="LineEdit" parent="VBoxContainer3/GoodUpdateParams/IdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameContainer" type="HBoxContainer" parent="VBoxContainer3/GoodUpdateParams"]
+layout_mode = 2
+
+[node name="NameLabel" type="RichTextLabel" parent="VBoxContainer3/GoodUpdateParams/NameContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]name[/u]:"
+
+[node name="NameInput" type="LineEdit" parent="VBoxContainer3/GoodUpdateParams/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PriorityContainer" type="HBoxContainer" parent="VBoxContainer3/GoodUpdateParams"]
+layout_mode = 2
+
+[node name="PriorityLabel" type="RichTextLabel" parent="VBoxContainer3/GoodUpdateParams/PriorityContainer"]
+custom_minimum_size = Vector2(70, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]priority[/u]:"
+
+[node name="PriorityInput" type="LineEdit" parent="VBoxContainer3/GoodUpdateParams/PriorityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoodDeleteParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="IdContainer" type="HBoxContainer" parent="VBoxContainer3/GoodDeleteParams"]
+layout_mode = 2
+
+[node name="IdLabel" type="RichTextLabel" parent="VBoxContainer3/GoodDeleteParams/IdContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]id[/u]:"
+
+[node name="IdInput" type="LineEdit" parent="VBoxContainer3/GoodDeleteParams/IdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaleCreateParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="CountContainer" type="HBoxContainer" parent="VBoxContainer3/SaleCreateParams"]
+layout_mode = 2
+
+[node name="CountLabel" type="RichTextLabel" parent="VBoxContainer3/SaleCreateParams/CountContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]count[/u]:"
+
+[node name="CountInput" type="LineEdit" parent="VBoxContainer3/SaleCreateParams/CountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DateContainer" type="HBoxContainer" parent="VBoxContainer3/SaleCreateParams"]
+layout_mode = 2
+
+[node name="DateLabel" type="RichTextLabel" parent="VBoxContainer3/SaleCreateParams/DateContainer"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]date time[/u]:"
+
+[node name="DateInput" type="LineEdit" parent="VBoxContainer3/SaleCreateParams/DateContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoodIdContainer" type="HBoxContainer" parent="VBoxContainer3/SaleCreateParams"]
+layout_mode = 2
+
+[node name="GoodIdLabel" type="RichTextLabel" parent="VBoxContainer3/SaleCreateParams/GoodIdContainer"]
+custom_minimum_size = Vector2(70, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]good id[/u]:"
+
+[node name="GoodIdInput" type="LineEdit" parent="VBoxContainer3/SaleCreateParams/GoodIdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaleUpdateParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="IdContainer" type="HBoxContainer" parent="VBoxContainer3/SaleUpdateParams"]
+layout_mode = 2
+
+[node name="IdLabel" type="RichTextLabel" parent="VBoxContainer3/SaleUpdateParams/IdContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]id[/u]:"
+
+[node name="IdInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/IdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CountContainer" type="HBoxContainer" parent="VBoxContainer3/SaleUpdateParams"]
+layout_mode = 2
+
+[node name="CountLabel" type="RichTextLabel" parent="VBoxContainer3/SaleUpdateParams/CountContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]count[/u]:"
+
+[node name="CountInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/CountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DateContainer" type="HBoxContainer" parent="VBoxContainer3/SaleUpdateParams"]
+layout_mode = 2
+
+[node name="DateLabel" type="RichTextLabel" parent="VBoxContainer3/SaleUpdateParams/DateContainer"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]date time[/u]:"
+
+[node name="DateInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/DateContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoodIdContainer" type="HBoxContainer" parent="VBoxContainer3/SaleUpdateParams"]
+layout_mode = 2
+
+[node name="GoodIdLabel" type="RichTextLabel" parent="VBoxContainer3/SaleUpdateParams/GoodIdContainer"]
+custom_minimum_size = Vector2(70, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]good id[/u]:"
+
+[node name="GoodIdInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/GoodIdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaleDeleteParams" type="VBoxContainer" parent="VBoxContainer3" groups=["params"]]
+visible = false
+layout_mode = 2
+
+[node name="IdContainer" type="HBoxContainer" parent="VBoxContainer3/SaleDeleteParams"]
+layout_mode = 2
+
+[node name="IdLabel" type="RichTextLabel" parent="VBoxContainer3/SaleDeleteParams/IdContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]id[/u]:"
+
+[node name="IdInput" type="LineEdit" parent="VBoxContainer3/SaleDeleteParams/IdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SendRequest" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Отправить запрос"
+
+[node name="RequestPerformer" parent="." instance=ExtResource("2_04ccj")]
+
+[connection signal="item_selected" from="VBoxContainer3/PickerContainer/DBPicker" to="." method="_on_db_picker_item_selected"]
+[connection signal="item_selected" from="VBoxContainer3/PickerContainer/RequestPicker" to="." method="_on_request_picker_item_selected"]
+[connection signal="button_up" from="VBoxContainer3/SendRequest" to="." method="_on_send_request_button_up"]
+[connection signal="response_ready" from="RequestPerformer" to="." method="_on_request_performer_response_ready"]

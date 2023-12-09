@@ -35,6 +35,7 @@ func _on_http_request_request_completed(result: int, response_code: int,
 	if response_code != 200 and response_code != 201:
 		# Error. Put it in response
 		response = body.get_string_from_utf8()
+		emit_signal("response_ready")
 		return
 	# Get the body as json
 	print(str("body", body))

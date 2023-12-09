@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwkpve8t08wad"]
+[gd_scene load_steps=7 format=3 uid="uid://dwkpve8t08wad"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_6j80v"]
 [ext_resource type="PackedScene" uid="uid://b8l7p1ph73dxj" path="res://windows/Journal.tscn" id="2_1dg74"]
 [ext_resource type="PackedScene" uid="uid://0fldld3rukkt" path="res://src/RequestPerformer.tscn" id="3_fp7gn"]
+[ext_resource type="PackedScene" uid="uid://dfmwkpbvabqtu" path="res://windows/RequestBuilder.tscn" id="4_irs3u"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_umxuq"]
 
@@ -16,6 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6j80v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.356863, 0.631373, 0.639216)
 
 [node name="Journal" parent="." instance=ExtResource("2_1dg74")]
 layout_mode = 1
@@ -111,6 +121,13 @@ button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_csmbw")
 text = "Товары"
+
+[node name="RequestBuilder" parent="." instance=ExtResource("4_irs3u")]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -1005.0
+offset_bottom = 5.0
 
 [connection signal="response_ready" from="Journal/RequestPerformer" to="Journal" method="_on_request_performer_response_ready"]
 [connection signal="button_down" from="DbPicker/Warehouse1" to="Journal" method="_on_warehouse_1_button_down"]

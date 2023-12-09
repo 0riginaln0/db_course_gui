@@ -25,23 +25,31 @@ grow_vertical = 2
 [node name="Id" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 bbcode_enabled = true
 text = "id"
+selection_enabled = true
 
 [node name="GoodCount" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 bbcode_enabled = true
 text = "count"
+selection_enabled = true
 
 [node name="CreateDate" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 bbcode_enabled = true
 text = "create date"
+selection_enabled = true
 
 [node name="GoodIdNamePriority" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 bbcode_enabled = true
 text = "good"
+selection_enabled = true

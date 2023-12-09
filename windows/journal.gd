@@ -14,18 +14,6 @@ var good_factory = preload("res://grid_entities/Good.tscn")
 var sale_factory = preload("res://grid_entities/Sale.tscn")
 var wh_factory = preload("res://grid_entities/Warehouse.tscn")
 
-#var response: Array = []
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-# add row func
 
 func _on_request_performer_response_ready() -> void:
 	var response: Array = $RequestPerformer.response
@@ -54,6 +42,7 @@ func _on_goods_button_down() -> void:
 	state = JOURNAL_STATE.GOODS
 	var str: String = "good/all"
 	$RequestPerformer.get_request(ApplicationProperties.url + str)
+
 
 func set_sales(response: Array):
 	for ch in $DbGrid/ScrollContainer/VBoxContainer.get_children():
