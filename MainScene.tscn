@@ -145,7 +145,6 @@ selection_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
-autostart = true
 
 [connection signal="response_ready" from="Journal/RequestPerformer" to="Journal" method="_on_request_performer_response_ready"]
 [connection signal="button_down" from="DbPicker/Warehouse1" to="Journal" method="_on_warehouse_1_button_down"]
