@@ -29,7 +29,6 @@ func _on_request_picker_item_selected(index: int) -> void:
 	if not entity.is_empty():
 		view_params()
 
-
 func view_params():
 	get_tree().call_group("params", "hide")
 	match entity:
@@ -50,7 +49,6 @@ func view_params():
 				"delete":
 					$VBoxContainer3/SaleDeleteParams.show()
 
-
 func _on_send_request_button_up() -> void:
 	match entity:
 		"good":
@@ -61,22 +59,20 @@ func _on_send_request_button_up() -> void:
 				"put":
 					print("put good")
 					put_good()
-					#$RequestPerformer.put_request(ApplicationProperties.url + str)
-					pass
 				"delete":
-					#$RequestPerformer.delete_request(ApplicationProperties.url + str)
-					pass
+					print("delete good")
+					delete_good()
 		"sale":
 			match request_type:
 				"post":
-					#$RequestPerformer.post_request(ApplicationProperties.url + str)
-					pass
+					print("post sale")
+					post_sale()
 				"put":
-					#$RequestPerformer.put_request(ApplicationProperties.url + str)
-					pass
+					print("put sale")
+					put_sale()
 				"delete":
-					#$RequestPerformer.delete_request(ApplicationProperties.url + str)
-					pass
+					print("delete sale")
+					delete_sale()
 
 func post_good():
 	if ($VBoxContainer3/GoodCreateParams/NameContainer/NameInput.text == "" or
@@ -104,10 +100,72 @@ func put_good():
 		json.name = good_name
 	if !priority.is_empty():
 		json.priority = priority
-	
 	var str = entity + "/" + request_type
 	$RequestPerformer.put_request(ApplicationProperties.url + str, str(json))
-	
+
+func delete_good():
+	if ($VBoxContainer3/GoodDeleteParams/IdContainer/IdInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var id: String = $VBoxContainer3/GoodDeleteParams/IdContainer/IdInput.text
+	var json: Dictionary = {}
+	json.goodId = id
+	var str = entity + "/" + request_type
+	$RequestPerformer.delete_request(ApplicationProperties.url + str, str(json))
+
+func delete_sale():
+	if ($VBoxContainer3/SaleDeleteParams/IdContainer/IdInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var id: String = $VBoxContainer3/SaleDeleteParams/IdContainer/IdInput.text
+	var json: Dictionary = {}
+	json.saleId = id
+	var str = entity + "/" + request_type
+	$RequestPerformer.delete_request(ApplicationProperties.url + str, str(json))
+
+func post_sale():
+	if ($VBoxContainer3/SaleCreateParams/CountContainer/CountInput.text == "" or
+		$VBoxContainer3/SaleCreateParams/GoodIdContainer/GoodIdInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var json: Dictionary = {}
+	json.goodCount = $VBoxContainer3/SaleCreateParams/CountContainer/CountInput.text
+	var create_date: String = $VBoxContainer3/SaleCreateParams/DateContainer/DateInput.text
+	if create_date.is_empty():
+		create_date = Time.get_datetime_string_from_system() + "+00:00"
+		print(create_date)
+	else:
+		create_date += "+00:00"
+	print(create_date)
+	json.createDate = create_date
+	json.good = {
+		"goodId": $VBoxContainer3/SaleCreateParams/GoodIdContainer/GoodIdInput.text
+	}
+	var str = entity + "/" + request_type
+	$RequestPerformer.post_request(ApplicationProperties.url + str, str(json))
+
+func put_sale():
+	if ($VBoxContainer3/SaleUpdateParams/IdContainer/IdInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var id: String = $VBoxContainer3/SaleUpdateParams/IdContainer/IdInput.text
+	var goodCount: String = $VBoxContainer3/SaleUpdateParams/CountContainer/CountInput.text
+	var createDate: String = $VBoxContainer3/SaleUpdateParams/DateContainer/DateInput.text
+	var goodId: String = $VBoxContainer3/SaleUpdateParams/GoodIdContainer/GoodIdInput.text
+		
+	var json: Dictionary = {}
+	json.saleId = id
+	if !goodCount.is_empty():
+		json.goodCount = goodCount
+	if !createDate.is_empty():
+		json.createDate = createDate + "+00:00"
+	if !goodId.is_empty():
+		json.good = {
+			"goodId": goodId
+		}
+	var str = entity + "/" + request_type
+	$RequestPerformer.put_request(ApplicationProperties.url + str, str(json))
+
 func _on_request_performer_response_ready() -> void:
 	var response = $RequestPerformer.response
 	$RequestResponse.text = str(response)

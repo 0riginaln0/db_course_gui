@@ -127,10 +127,29 @@ layout_mode = 1
 offset_left = 5.0
 offset_top = 5.0
 offset_right = -1005.0
-offset_bottom = 5.0
+offset_bottom = -50.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -45.0
+offset_right = 279.0
+offset_bottom = -5.0
+grow_vertical = 0
+focus_mode = 2
+text = "current time"
+selection_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
 
 [connection signal="response_ready" from="Journal/RequestPerformer" to="Journal" method="_on_request_performer_response_ready"]
 [connection signal="button_down" from="DbPicker/Warehouse1" to="Journal" method="_on_warehouse_1_button_down"]
 [connection signal="button_down" from="DbPicker/Warehouse2" to="Journal" method="_on_warehouse_2_button_down"]
 [connection signal="button_down" from="DbPicker/Sales" to="Journal" method="_on_sales_button_down"]
 [connection signal="button_down" from="DbPicker/Goods" to="Journal" method="_on_goods_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

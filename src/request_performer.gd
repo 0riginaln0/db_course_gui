@@ -11,6 +11,7 @@ func post_request(url: String, json: String):
 	var headers: PackedStringArray = [
 		"Content-Type: application/json"
 	]
+	print(json)
 	$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, json)
 
 func put_request(url: String, json: String = "no json") -> void:
@@ -26,9 +27,11 @@ func put_request(url: String, json: String = "no json") -> void:
 		$HTTPRequest.request(url, headers, HTTPClient.METHOD_PUT, "")
 
 
-func delete_request(url: String):
-	var headers: PackedStringArray = []
-	$HTTPRequest.request(url, headers, HTTPClient.METHOD_DELETE)
+func delete_request(url: String, json: String):
+	var headers: PackedStringArray = [
+			 "Content-Type: application/json"
+		]
+	$HTTPRequest.request(url, headers, HTTPClient.METHOD_DELETE, json)
 
 func _on_http_request_request_completed(result: int, response_code: int, 
 	headers: PackedStringArray, body: PackedByteArray) -> void:
