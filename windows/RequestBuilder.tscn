@@ -17,6 +17,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -312.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -60,7 +61,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]name[/u]:"
+text = "[b][u]name[/u][/b]:"
 
 [node name="NameInput" type="LineEdit" parent="VBoxContainer3/GoodCreateParams/NameContainer"]
 layout_mode = 2
@@ -73,7 +74,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(70, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]priority[/u]:"
+text = "[b][u]priority[/u][/b]:"
 
 [node name="PriorityInput" type="LineEdit" parent="VBoxContainer3/GoodCreateParams/PriorityContainer"]
 layout_mode = 2
@@ -90,7 +91,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]id[/u]:"
+text = "[b][u]id[/u][/b]:"
 
 [node name="IdInput" type="LineEdit" parent="VBoxContainer3/GoodUpdateParams/IdContainer"]
 layout_mode = 2
@@ -133,7 +134,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]id[/u]:"
+text = "[b][u]id[/u][/b]:"
 
 [node name="IdInput" type="LineEdit" parent="VBoxContainer3/GoodDeleteParams/IdContainer"]
 layout_mode = 2
@@ -150,7 +151,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]count[/u]:"
+text = "[b][u]count[/u][/b]:"
 
 [node name="CountInput" type="LineEdit" parent="VBoxContainer3/SaleCreateParams/CountContainer"]
 layout_mode = 2
@@ -176,7 +177,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(70, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]good id[/u]:"
+text = "[b][u]good id[/u][/b]:"
 
 [node name="GoodIdInput" type="LineEdit" parent="VBoxContainer3/SaleCreateParams/GoodIdContainer"]
 layout_mode = 2
@@ -193,7 +194,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]id[/u]:"
+text = "[b][u]id[/u][/b]:"
 
 [node name="IdInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/IdContainer"]
 layout_mode = 2
@@ -249,7 +250,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]id[/u]:"
+text = "[b][u]id[/u][/b]:"
 
 [node name="IdInput" type="LineEdit" parent="VBoxContainer3/SaleDeleteParams/IdContainer"]
 layout_mode = 2
@@ -261,6 +262,17 @@ size_flags_vertical = 2
 text = "Отправить запрос"
 
 [node name="RequestPerformer" parent="." instance=ExtResource("2_04ccj")]
+
+[node name="RequestResponse" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -310.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ответ на запрос"
 
 [connection signal="item_selected" from="VBoxContainer3/PickerContainer/DBPicker" to="." method="_on_db_picker_item_selected"]
 [connection signal="item_selected" from="VBoxContainer3/PickerContainer/RequestPicker" to="." method="_on_request_picker_item_selected"]

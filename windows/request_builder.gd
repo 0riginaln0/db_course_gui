@@ -59,6 +59,8 @@ func _on_send_request_button_up() -> void:
 					print("post good")
 					post_good()
 				"put":
+					print("put good")
+					put_good()
 					#$RequestPerformer.put_request(ApplicationProperties.url + str)
 					pass
 				"delete":
@@ -77,6 +79,10 @@ func _on_send_request_button_up() -> void:
 					pass
 
 func post_good():
+	if ($VBoxContainer3/GoodCreateParams/NameContainer/NameInput.text == "" or
+		$VBoxContainer3/GoodCreateParams/PriorityContainer/PriorityInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
 	var str = entity + "/" + request_type
 	var json = {
 			"name": $VBoxContainer3/GoodCreateParams/NameContainer/NameInput.text,
@@ -84,6 +90,24 @@ func post_good():
 		}
 	$RequestPerformer.post_request(ApplicationProperties.url + str, str(json))
 
+func put_good():
+	if ($VBoxContainer3/GoodUpdateParams/IdContainer/IdInput.text == ""):
+		$RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var id: String = $VBoxContainer3/GoodUpdateParams/IdContainer/IdInput.text
+	var good_name: String = $VBoxContainer3/GoodUpdateParams/NameContainer/NameInput.text
+	var priority: String = $VBoxContainer3/GoodUpdateParams/PriorityContainer/PriorityInput.text
+	
+	var json: Dictionary = {}
+	json.goodId = id
+	if !good_name.is_empty():
+		json.name = good_name
+	if !priority.is_empty():
+		json.priority = priority
+	
+	var str = entity + "/" + request_type
+	$RequestPerformer.put_request(ApplicationProperties.url + str, str(json))
+	
 func _on_request_performer_response_ready() -> void:
 	var response = $RequestPerformer.response
-	print(response)
+	$RequestResponse.text = str(response)
