@@ -148,7 +148,8 @@ func post_sale():
 	$RequestPerformer.post_request(ApplicationProperties.url + str, str(json))
 
 func put_sale():
-	if ($VBoxContainer3/SaleUpdateParams/IdContainer/IdInput.text == ""):
+	if ($VBoxContainer3/SaleUpdateParams/IdContainer/IdInput.text == "" or 
+		$VBoxContainer3/SaleUpdateParams/GoodIdContainer/GoodIdInput.text == ""):
 		$RequestResponse.text = "Введите все обязательные параметры запроса"
 		return
 	if ($VBoxContainer3/SaleUpdateParams/CountContainer/CountInput.text != ""):

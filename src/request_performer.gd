@@ -41,10 +41,10 @@ func _on_http_request_request_completed(result: int, response_code: int,
 		emit_signal("response_ready")
 		return
 	# Get the body as json
-	print(str("body", body))
+	#print(str("body", body))
 	
 	var json = body.get_string_from_utf8()
-	print(json)
+	#print(json)
 	# Parsing it into the dictionary
 	var parsed_data = JSON.parse_string(json)
 	# Because JSON.parse_string returns null when parsing fails.

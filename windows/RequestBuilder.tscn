@@ -233,7 +233,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(70, 25)
 layout_mode = 2
 bbcode_enabled = true
-text = "[u]good id[/u]:"
+text = "[b][u]good id[/u][/b]:"
 
 [node name="GoodIdInput" type="LineEdit" parent="VBoxContainer3/SaleUpdateParams/GoodIdContainer"]
 layout_mode = 2
