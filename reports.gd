@@ -40,6 +40,21 @@ func hanlde_top5_response(response: Array):
 		new_good.set_priority(str(good.get("priority")))
 		$Top5Container.add_child(new_good)
 
+
+func _on_demand_graph_button_up() -> void:
+	if ($RequestButtons/TBeginBox/LineEdit.text == "" or
+		$RequestButtons/TEndBox/LineEdit.text == "" or 
+		$RequestButtons/GoodId/LineEdit.text == ""):
+		$RequestButtons/RequestResponse.text = "Введите все обязательные параметры запроса"
+		return
+	var t_begin = $RequestButtons/TBeginBox/LineEdit.text + "+00:00"
+	var t_end = $RequestButtons/TEndBox/LineEdit.text + "+00:00"
+	var good_id = $RequestButtons/GoodId/LineEdit.text
+	var str = "good/demand-change/" + t_begin + "/" + t_end + "/" + good_id;
+	current_state = REPORT_STATE.DEMAND
+	$RequestPerformer.get_request(ApplicationProperties.url + str)
+
+
 func _on_request_performer_response_ready() -> void:
 	var response: Array = $RequestPerformer.response
 	match current_state:
@@ -49,4 +64,15 @@ func _on_request_performer_response_ready() -> void:
 			handle_demand_response(response)
 
 func handle_demand_response(response: Array):
-	pass
+	var dates_array = []
+	var demands_array = []
+	var good_name = response[0].get("name")
+	
+	for record in response:
+		dates_array.append(str(record.get("date")))
+		demands_array.append(int(record.get("demand")))
+	
+	for i in range(len(dates_array)):
+		print(dates_array[i])
+		print(demands_array[i])
+		
