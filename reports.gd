@@ -68,10 +68,12 @@ func handle_demand_response(response: Array):
 	var good_name = str(response[0].get("name"))
 	
 	var counter = 1
+	$RichTextLabel.text = "№ |   День   |  Продажи"
 	for record in response:
 		demands_array.append(int(record.get("demand")))
 		dates_array.append(str(record.get("date")))
 		x_dates.append(counter)
+		$RichTextLabel.text += str("\n", counter, " | " , record.get("date"), " | ", record.get("demand"))
 		counter += 1
 	var new_chart = chart_factory.instantiate()
 	new_chart._x_values = x_dates

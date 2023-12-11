@@ -193,6 +193,14 @@ offset_top = 289.0
 offset_right = 1272.0
 offset_bottom = 706.0
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Reports"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 287.0
+offset_right = 195.0
+offset_bottom = 670.0
+text = "№ |   День   |  Продажи"
+
 [node name="Directory" type="Control" parent="."]
 visible = false
 layout_mode = 1
