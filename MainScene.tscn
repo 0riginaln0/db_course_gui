@@ -32,7 +32,6 @@ color = Color(0.137255, 0.356863, 0.631373, 0.639216)
 wait_time = 60.0
 
 [node name="Journals" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,6 +107,7 @@ offset_right = -1005.0
 offset_bottom = -50.0
 
 [node name="Reports" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,15 +201,6 @@ offset_right = 195.0
 offset_bottom = 670.0
 text = "№ |   День   |  Продажи"
 
-[node name="Directory" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -237,14 +228,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_umxuq")
 text = "Отчёты"
 
-[node name="Directory" type="Button" parent="Menu"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 3
-toggle_mode = true
-button_group = SubResource("ButtonGroup_umxuq")
-text = "Справочник"
-
 [node name="CurrentTime" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -270,4 +253,3 @@ selection_enabled = true
 [connection signal="response_ready" from="Reports/RequestPerformer" to="Reports" method="_on_request_performer_response_ready"]
 [connection signal="button_up" from="Menu/Journal" to="." method="_on_journal_button_up"]
 [connection signal="button_up" from="Menu/Reports" to="." method="_on_reports_button_up"]
-[connection signal="button_up" from="Menu/Directory" to="." method="_on_directory_button_up"]
