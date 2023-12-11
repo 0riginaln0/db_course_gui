@@ -186,6 +186,13 @@ offset_bottom = 273.0
 
 [node name="RequestPerformer" parent="Reports" instance=ExtResource("3_fp7gn")]
 
+[node name="FuckingChart" type="Control" parent="Reports"]
+anchors_preset = 0
+offset_left = 193.0
+offset_top = 289.0
+offset_right = 1272.0
+offset_bottom = 706.0
+
 [node name="Directory" type="Control" parent="."]
 visible = false
 layout_mode = 1

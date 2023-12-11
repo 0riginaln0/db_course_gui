@@ -12,7 +12,7 @@ func _on_reports_button_up() -> void:
 	$Journals.hide()
 	$Directory.hide()
 	$Reports.show()
-	pass # Replace with function body.
+	pass # eplace with function body.
 
 
 func _on_journal_button_up() -> void:

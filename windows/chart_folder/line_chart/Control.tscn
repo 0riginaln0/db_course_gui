@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://chcj7up8k8pa8"]
+[gd_scene load_steps=4 format=3 uid="uid://dspudnait00xv"]
 
-[ext_resource type="Script" path="res://addons/easy_charts/examples/line_chart/Control.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="2"]
+[ext_resource type="Script" path="res://addons/easy_charts/examples/line_chart/Control.gd" id="1_773j1"]
+[ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="2_6rygo"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 content_margin_right = 5.0
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1")
+script = ExtResource("1_773j1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -36,7 +36,7 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 text = "Start Relatime Plotting"
 
-[node name="Chart" parent="VBoxContainer" instance=ExtResource("2")]
+[node name="Chart" parent="VBoxContainer" instance=ExtResource("2_6rygo")]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]

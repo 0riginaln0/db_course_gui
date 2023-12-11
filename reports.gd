@@ -8,16 +8,7 @@ enum REPORT_STATE {
 var current_state: REPORT_STATE
 
 var good_factory = preload("res://grid_entities/TopGood.tscn")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+var chart_factory = preload("res://windows/chart_folder/line_chart/Control.tscn")
 
 func _on_top_5_goods_button_up() -> void:
 	if ($RequestButtons/TBeginBox/LineEdit.text == "" or
@@ -56,6 +47,9 @@ func _on_demand_graph_button_up() -> void:
 
 
 func _on_request_performer_response_ready() -> void:
+	if $RequestPerformer.response is String:
+		$RequestButtons/RequestResponse.text = $RequestPerformer.response
+		return
 	var response: Array = $RequestPerformer.response
 	match current_state:
 		REPORT_STATE.TOP5:
@@ -65,14 +59,24 @@ func _on_request_performer_response_ready() -> void:
 
 func handle_demand_response(response: Array):
 	var dates_array = []
+	var x_dates = []
 	var demands_array = []
-	var good_name = response[0].get("name")
+	if response.is_empty():
+		$RequestButtons/RequestResponse.text = "Нету данных по выбранным параметрам"
+		return
 	
+	var good_name = str(response[0].get("name"))
+	
+	var counter = 1
 	for record in response:
-		dates_array.append(str(record.get("date")))
 		demands_array.append(int(record.get("demand")))
+		dates_array.append(str(record.get("date")))
+		x_dates.append(counter)
+		counter += 1
+	var new_chart = chart_factory.instantiate()
+	new_chart._x_values = x_dates
+	new_chart._y_values = demands_array
+	new_chart._x_values_labels = dates_array
+	new_chart._y_scale = demands_array.max() - demands_array.min()
+	$FuckingChart.add_child(new_chart)
 	
-	for i in range(len(dates_array)):
-		print(dates_array[i])
-		print(demands_array[i])
-		
