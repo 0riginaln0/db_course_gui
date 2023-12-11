@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc330yilcgguu"]
+[gd_scene load_steps=2 format=3 uid="uid://bc330yilcgguu"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_g7wvg"]
-[ext_resource type="PackedScene" uid="uid://0fldld3rukkt" path="res://src/RequestPerformer.tscn" id="2_1seld"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,8 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g7wvg")
 
-[node name="RequestPerformer" parent="." instance=ExtResource("2_1seld")]
-
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 363.0
@@ -22,5 +19,4 @@ offset_right = 1031.0
 offset_bottom = 421.0
 text = "BUTTON"
 
-[connection signal="response_ready" from="RequestPerformer" to="." method="_on_request_performer_response_ready"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

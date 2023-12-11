@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwkpve8t08wad"]
+[gd_scene load_steps=8 format=3 uid="uid://dwkpve8t08wad"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_6j80v"]
 [ext_resource type="PackedScene" uid="uid://b8l7p1ph73dxj" path="res://windows/Journal.tscn" id="2_1dg74"]
 [ext_resource type="PackedScene" uid="uid://0fldld3rukkt" path="res://src/RequestPerformer.tscn" id="3_fp7gn"]
 [ext_resource type="PackedScene" uid="uid://dfmwkpbvabqtu" path="res://windows/RequestBuilder.tscn" id="4_irs3u"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_umxuq"]
+[ext_resource type="Script" path="res://reports.gd" id="5_ib75x"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_csmbw"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_umxuq"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -27,7 +28,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.137255, 0.356863, 0.631373, 0.639216)
 
-[node name="Journal" parent="." instance=ExtResource("2_1dg74")]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+
+[node name="Journals" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Journal" parent="Journals" instance=ExtResource("2_1dg74")]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -35,7 +48,152 @@ anchor_right = 0.5
 offset_left = -360.0
 offset_right = 360.0
 
-[node name="RequestPerformer" parent="Journal" instance=ExtResource("3_fp7gn")]
+[node name="RequestPerformer" parent="Journals/Journal" instance=ExtResource("3_fp7gn")]
+
+[node name="DbPicker" type="VBoxContainer" parent="Journals"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -322.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Warehouse1" type="Button" parent="Journals/DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_csmbw")
+text = "Склад №1"
+
+[node name="Warehouse2" type="Button" parent="Journals/DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_csmbw")
+text = "Склад №2"
+
+[node name="Sales" type="Button" parent="Journals/DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_csmbw")
+text = "Продажи"
+
+[node name="Goods" type="Button" parent="Journals/DbPicker"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_csmbw")
+text = "Товары"
+
+[node name="RequestBuilder" parent="Journals" instance=ExtResource("4_irs3u")]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -1005.0
+offset_bottom = -50.0
+
+[node name="Reports" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ib75x")
+
+[node name="RequestButtons" type="VBoxContainer" parent="Reports"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 20.0
+offset_right = 418.0
+offset_bottom = 277.0
+
+[node name="Top5Goods" type="Button" parent="Reports/RequestButtons"]
+layout_mode = 2
+text = "Топ 5 товаров"
+
+[node name="TBeginBox" type="HBoxContainer" parent="Reports/RequestButtons"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Reports/RequestButtons/TBeginBox"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[b][u]Дата и время начала:[/u]"
+
+[node name="LineEdit" type="LineEdit" parent="Reports/RequestButtons/TBeginBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="TEndBox" type="HBoxContainer" parent="Reports/RequestButtons"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Reports/RequestButtons/TEndBox"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[b][u]Дата и время конца:[/u]"
+
+[node name="LineEdit" type="LineEdit" parent="Reports/RequestButtons/TEndBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DemandGraph" type="Button" parent="Reports/RequestButtons"]
+layout_mode = 2
+text = "График спроса"
+
+[node name="GoodId" type="HBoxContainer" parent="Reports/RequestButtons"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Reports/RequestButtons/GoodId"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[b][u]Id:[/u]"
+
+[node name="LineEdit" type="LineEdit" parent="Reports/RequestButtons/GoodId"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="RequestResponse" type="RichTextLabel" parent="Reports/RequestButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Top5Container" type="VBoxContainer" parent="Reports"]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 17.0
+offset_right = 987.0
+offset_bottom = 273.0
+
+[node name="RequestPerformer" parent="Reports" instance=ExtResource("3_fp7gn")]
+
+[node name="Directory" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -72,64 +230,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_umxuq")
 text = "Справочник"
 
-[node name="DbPicker" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -276.0
-offset_top = -322.0
-offset_right = -5.0
-offset_bottom = -5.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="Warehouse1" type="Button" parent="DbPicker"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 3
-toggle_mode = true
-button_group = SubResource("ButtonGroup_csmbw")
-text = "Склад №1"
-
-[node name="Warehouse2" type="Button" parent="DbPicker"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 3
-toggle_mode = true
-button_group = SubResource("ButtonGroup_csmbw")
-text = "Склад №2"
-
-[node name="Sales" type="Button" parent="DbPicker"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 3
-toggle_mode = true
-button_group = SubResource("ButtonGroup_csmbw")
-text = "Продажи"
-
-[node name="Goods" type="Button" parent="DbPicker"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 3
-toggle_mode = true
-button_pressed = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_csmbw")
-text = "Товары"
-
-[node name="RequestBuilder" parent="." instance=ExtResource("4_irs3u")]
-layout_mode = 1
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -1005.0
-offset_bottom = -50.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="CurrentTime" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -143,12 +244,14 @@ focus_mode = 2
 text = "current time"
 selection_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 60.0
-
-[connection signal="response_ready" from="Journal/RequestPerformer" to="Journal" method="_on_request_performer_response_ready"]
-[connection signal="button_down" from="DbPicker/Warehouse1" to="Journal" method="_on_warehouse_1_button_down"]
-[connection signal="button_down" from="DbPicker/Warehouse2" to="Journal" method="_on_warehouse_2_button_down"]
-[connection signal="button_down" from="DbPicker/Sales" to="Journal" method="_on_sales_button_down"]
-[connection signal="button_down" from="DbPicker/Goods" to="Journal" method="_on_goods_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="response_ready" from="Journals/Journal/RequestPerformer" to="Journals/Journal" method="_on_request_performer_response_ready"]
+[connection signal="button_down" from="Journals/DbPicker/Warehouse1" to="Journals/Journal" method="_on_warehouse_1_button_down"]
+[connection signal="button_down" from="Journals/DbPicker/Warehouse2" to="Journals/Journal" method="_on_warehouse_2_button_down"]
+[connection signal="button_down" from="Journals/DbPicker/Sales" to="Journals/Journal" method="_on_sales_button_down"]
+[connection signal="button_down" from="Journals/DbPicker/Goods" to="Journals/Journal" method="_on_goods_button_down"]
+[connection signal="button_up" from="Reports/RequestButtons/Top5Goods" to="Reports" method="_on_top_5_goods_button_up"]
+[connection signal="response_ready" from="Reports/RequestPerformer" to="Reports" method="_on_request_performer_response_ready"]
+[connection signal="button_up" from="Menu/Journal" to="." method="_on_journal_button_up"]
+[connection signal="button_up" from="Menu/Reports" to="." method="_on_reports_button_up"]
+[connection signal="button_up" from="Menu/Directory" to="." method="_on_directory_button_up"]
