@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwkpve8t08wad"]
+[gd_scene load_steps=9 format=3 uid="uid://dwkpve8t08wad"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_6j80v"]
 [ext_resource type="PackedScene" uid="uid://b8l7p1ph73dxj" path="res://windows/Journal.tscn" id="2_1dg74"]
 [ext_resource type="PackedScene" uid="uid://0fldld3rukkt" path="res://src/RequestPerformer.tscn" id="3_fp7gn"]
 [ext_resource type="PackedScene" uid="uid://dfmwkpbvabqtu" path="res://windows/RequestBuilder.tscn" id="4_irs3u"]
 [ext_resource type="Script" path="res://reports.gd" id="5_ib75x"]
+[ext_resource type="Texture2D" uid="uid://8xfuxoad6oqj" path="res://icons/diskette.png" id="6_7q6r1"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_csmbw"]
 
@@ -201,6 +202,24 @@ offset_right = 195.0
 offset_bottom = 670.0
 text = "№ |   День   |  Продажи"
 
+[node name="SaveDemandGraph" type="Button" parent="Reports"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 124.0
+offset_right = 456.0
+offset_bottom = 158.0
+icon = ExtResource("6_7q6r1")
+expand_icon = true
+
+[node name="SaveTop5" type="Button" parent="Reports"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 18.0
+offset_right = 456.0
+offset_bottom = 52.0
+icon = ExtResource("6_7q6r1")
+expand_icon = true
+
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -251,5 +270,7 @@ selection_enabled = true
 [connection signal="button_up" from="Reports/RequestButtons/Top5Goods" to="Reports" method="_on_top_5_goods_button_up"]
 [connection signal="button_up" from="Reports/RequestButtons/DemandGraph" to="Reports" method="_on_demand_graph_button_up"]
 [connection signal="response_ready" from="Reports/RequestPerformer" to="Reports" method="_on_request_performer_response_ready"]
+[connection signal="button_up" from="Reports/SaveDemandGraph" to="Reports" method="_on_save_demand_graph_button_up"]
+[connection signal="button_up" from="Reports/SaveTop5" to="Reports" method="_on_save_top_5_button_up"]
 [connection signal="button_up" from="Menu/Journal" to="." method="_on_journal_button_up"]
 [connection signal="button_up" from="Menu/Reports" to="." method="_on_reports_button_up"]
