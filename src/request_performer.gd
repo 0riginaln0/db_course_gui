@@ -11,6 +11,8 @@ func post_request(url: String, json: String):
 	var headers: PackedStringArray = [
 		"Content-Type: application/json"
 	]
+	if not Jwt.get_token().is_empty():
+		headers.append("Authorization: Bearer " + Jwt.get_token())
 	print(json)
 	$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, json)
 
@@ -19,11 +21,15 @@ func put_request(url: String, json: String = "no json") -> void:
 		var headers: PackedStringArray = [
 			 "Content-Type: application/json"
 		]
+		if not Jwt.get_token().is_empty():
+			headers.append("Authorization: Bearer " + Jwt.get_token())
 		$HTTPRequest.request(url, headers, HTTPClient.METHOD_PUT, json)
 	else:
 		var headers: PackedStringArray = [
 			"Content-Length: 0"
 		]
+		if not Jwt.get_token().is_empty():
+			headers.append("Authorization: Bearer " + Jwt.get_token())
 		$HTTPRequest.request(url, headers, HTTPClient.METHOD_PUT, "")
 
 
@@ -31,6 +37,8 @@ func delete_request(url: String, json: String):
 	var headers: PackedStringArray = [
 			 "Content-Type: application/json"
 		]
+	if not Jwt.get_token().is_empty():
+		headers.append("Authorization: Bearer " + Jwt.get_token())
 	$HTTPRequest.request(url, headers, HTTPClient.METHOD_DELETE, json)
 
 func _on_http_request_request_completed(result: int, response_code: int, 

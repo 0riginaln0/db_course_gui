@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://cir02bk561ev6"]
+
+[ext_resource type="Script" path="res://windows/auth/entry_window.gd" id="1_pf7vj"]
+
+[node name="entry_window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pf7vj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 1, 1, 0.686275)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogIn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Log in"
+
+[node name="ContinueAsGuest" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue as a guest"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="button_up" from="VBoxContainer/LogIn" to="." method="_on_log_in_button_up"]
+[connection signal="button_up" from="VBoxContainer/ContinueAsGuest" to="." method="_on_continue_as_guest_button_up"]
+[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

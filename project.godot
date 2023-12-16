@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="db_course_gui"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://windows/auth/entry_window.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ApplicationProperties="*res://src/application_properties.gd"
 FileExporter="*res://src/file_exporter.gd"
+Jwt="*res://src/JWT.gd"
 
 [display]
 
